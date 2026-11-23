@@ -1,0 +1,131 @@
+[gd_scene format=3 uid="uid://do7lm6opw41y1"]
+
+[ext_resource type="Texture2D" uid="uid://bs1wbwgucy1xo" path="res://plus.svg" id="1_06t4h"]
+[ext_resource type="Script" uid="uid://d0j6ai3ggg78n" path="res://main_menu.gd" id="1_fu7sn"]
+[ext_resource type="Texture2D" uid="uid://bfel0nqj6a5ge" path="res://cross.svg" id="2_7vrkn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06t4h"]
+content_margin_left = 24.0
+content_margin_right = 24.0
+bg_color = Color(0.18039216, 0.61960787, 0.30980393, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7vrkn"]
+content_margin_left = 24.0
+content_margin_right = 24.0
+bg_color = Color(0.13725491, 0.5019608, 0.24313726, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fu7sn"]
+content_margin_left = 24.0
+content_margin_right = 24.0
+bg_color = Color(0.23529412, 0.70980394, 0.37254903, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhts7"]
+content_margin_left = 24.0
+content_margin_right = 24.0
+bg_color = Color(0.7882353, 0.22745098, 0.22745098, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jix8l"]
+content_margin_left = 24.0
+content_margin_right = 24.0
+bg_color = Color(0.64705884, 0.1764706, 0.1764706, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_glbon"]
+content_margin_left = 24.0
+content_margin_right = 24.0
+bg_color = Color(0.8784314, 0.28235295, 0.28235295, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="MainMenu" type="Control" unique_id=1368163861]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fu7sn")
+
+[node name="Background" type="ColorRect" parent="." unique_id=946627733]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.16470589, 0.16470589, 0.18039216, 1)
+
+[node name="Layout" type="VBoxContainer" parent="." unique_id=1578302651]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleArea" type="CenterContainer" parent="Layout" unique_id=143060224]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Title" type="Label" parent="Layout/TitleArea" unique_id=380617508]
+layout_mode = 2
+theme_override_font_sizes/font_size = 100
+text = "BLOODSHED"
+horizontal_alignment = 1
+
+[node name="ButtonArea" type="CenterContainer" parent="Layout" unique_id=45054393]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Buttons" type="VBoxContainer" parent="Layout/ButtonArea" unique_id=1568520059]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="NewButton" type="Button" parent="Layout/ButtonArea/Buttons" unique_id=686727506]
+custom_minimum_size = Vector2(250, 70)
+layout_mode = 2
+tooltip_text = "NEW"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_06t4h")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7vrkn")
+theme_override_styles/hover = SubResource("StyleBoxFlat_fu7sn")
+text = "NEW"
+icon = ExtResource("1_06t4h")
+
+[node name="QuitButton" type="Button" parent="Layout/ButtonArea/Buttons" unique_id=892805575]
+custom_minimum_size = Vector2(250, 70)
+layout_mode = 2
+tooltip_text = "QUIT"
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_focus_color = Color(1, 1, 1, 1)
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 35
+theme_override_styles/normal = SubResource("StyleBoxFlat_rhts7")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_jix8l")
+theme_override_styles/hover = SubResource("StyleBoxFlat_glbon")
+text = "QUIT"
+icon = ExtResource("2_7vrkn")
