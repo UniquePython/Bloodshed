@@ -15,11 +15,13 @@ extends PanelContainer
 @onready var redo_button: Button = $Row/RedoButton
 @onready var status_label: Label = $Row/StatusLabel
 
-var canvas: EditorCanvas
+var settings: EditorProperties
+var painter: BrushPainter
 var _swatches: Array[Button] = []
 
-func setup(c: EditorCanvas) -> void:
-	canvas = c
+func setup(canvas: EditorCanvas) -> void:
+	settings = canvas.settings
+	painter = canvas.painter
 
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color("#26262b")
@@ -58,18 +60,18 @@ func setup(c: EditorCanvas) -> void:
 	for button in find_children("*", "Button", true, false):
 		button.focus_mode = Control.FOCUS_NONE
 
-	ground_button.pressed.connect(canvas.set_layer.bind(EditorCanvas.LAYER_GROUND))
-	elevation_button.pressed.connect(canvas.set_layer.bind(EditorCanvas.LAYER_ELEVATION))
-	brush_button.pressed.connect(canvas.set_tool.bind(EditorCanvas.TOOL_BRUSH))
-	eraser_button.pressed.connect(canvas.set_tool.bind(EditorCanvas.TOOL_ERASER))
+	ground_button.pressed.connect(settings.set_layer.bind(EditorProperties.LAYER_GROUND))
+	elevation_button.pressed.connect(settings.set_layer.bind(EditorProperties.LAYER_ELEVATION))
+	brush_button.pressed.connect(settings.set_tool.bind(EditorProperties.TOOL_BRUSH))
+	eraser_button.pressed.connect(settings.set_tool.bind(EditorProperties.TOOL_ERASER))
 	size_slider.value_changed.connect(_on_size_changed)
 	height_spin.value_changed.connect(_on_height_changed)
-	undo_button.pressed.connect(canvas.undo_edit)
-	redo_button.pressed.connect(canvas.redo_edit)
+	undo_button.pressed.connect(painter.undo)
+	redo_button.pressed.connect(painter.redo)
 
-	canvas.settings_changed.connect(_sync)
+	settings.changed.connect(_sync)
 	canvas.cursor_changed.connect(_on_cursor_changed)
-	canvas.history_changed.connect(_update_history_buttons)
+	painter.history_changed.connect(_update_history_buttons)
 
 	_sync()
 	_update_history_buttons()
@@ -90,7 +92,7 @@ func _build_palette() -> void:
 		swatch.add_theme_stylebox_override("hover_pressed", _swatch_style(color, Color.WHITE, 4))
 		swatch.add_theme_stylebox_override("focus", StyleBoxEmpty.new())
 
-		swatch.pressed.connect(canvas.set_terrain.bind(id))
+		swatch.pressed.connect(settings.set_terrain.bind(id))
 		palette.add_child(swatch)
 		_swatches.append(swatch)
 
@@ -103,25 +105,25 @@ func _swatch_style(color: Color, border: Color, width: int) -> StyleBoxFlat:
 	return s
 
 func _sync() -> void:
-	ground_button.set_pressed_no_signal(canvas.layer == EditorCanvas.LAYER_GROUND)
-	elevation_button.set_pressed_no_signal(canvas.layer == EditorCanvas.LAYER_ELEVATION)
-	brush_button.set_pressed_no_signal(canvas.current_tool == EditorCanvas.TOOL_BRUSH)
-	eraser_button.set_pressed_no_signal(canvas.current_tool == EditorCanvas.TOOL_ERASER)
-	size_slider.set_value_no_signal(canvas.brush_radius)
-	size_label.text = "Size: %d" % canvas.brush_radius
-	height_spin.set_value_no_signal(canvas.selected_height)
+	ground_button.set_pressed_no_signal(settings.layer == EditorProperties.LAYER_GROUND)
+	elevation_button.set_pressed_no_signal(settings.layer == EditorProperties.LAYER_ELEVATION)
+	brush_button.set_pressed_no_signal(settings.current_tool == EditorProperties.TOOL_BRUSH)
+	eraser_button.set_pressed_no_signal(settings.current_tool == EditorProperties.TOOL_ERASER)
+	size_slider.set_value_no_signal(settings.brush_radius)
+	size_label.text = "Size: %d" % settings.brush_radius
+	height_spin.set_value_no_signal(settings.selected_height)
 	for i in _swatches.size():
-		_swatches[i].set_pressed_no_signal(i == canvas.selected_terrain)
+		_swatches[i].set_pressed_no_signal(i == settings.selected_terrain)
 
-	var on_ground := canvas.layer == EditorCanvas.LAYER_GROUND
+	var on_ground := settings.layer == EditorProperties.LAYER_GROUND
 	palette.visible = on_ground
 	height_box.visible = not on_ground
 
 func _on_size_changed(value: float) -> void:
-	canvas.set_radius(int(value))
+	settings.set_radius(int(value))
 
 func _on_height_changed(value: float) -> void:
-	canvas.set_height(int(value))
+	settings.set_height(int(value))
 
 func _on_cursor_changed(cell: Vector2i, height: int, inside: bool) -> void:
 	if inside:
@@ -130,5 +132,5 @@ func _on_cursor_changed(cell: Vector2i, height: int, inside: bool) -> void:
 		status_label.text = "Cell -    Height -"
 
 func _update_history_buttons() -> void:
-	undo_button.disabled = not canvas.history.can_undo()
-	redo_button.disabled = not canvas.history.can_redo()
+	undo_button.disabled = not painter.history.can_undo()
+	redo_button.disabled = not painter.history.can_redo()
