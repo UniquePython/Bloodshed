@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://b0he7r370pnq6"]
+
+[ext_resource type="Script" uid="uid://b2cudkpr8qkbi" path="res://editor/toolbar.gd" id="1_har8n"]
+
+[node name="Toolbar" type="PanelContainer" unique_id=1388740145]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_har8n")
+
+[node name="Row" type="HBoxContainer" parent="." unique_id=790223665]
+layout_mode = 2
+
+[node name="GroundButton" type="Button" parent="Row" unique_id=59582071]
+layout_mode = 2
+text = "Ground"
+
+[node name="ElevationButton" type="Button" parent="Row" unique_id=1776534145]
+layout_mode = 2
+text = "Elevation"
+
+[node name="Sep1" type="VSeparator" parent="Row" unique_id=233295017]
+layout_mode = 2
+
+[node name="BrushButton" type="Button" parent="Row" unique_id=669742752]
+layout_mode = 2
+text = "Brush"
+
+[node name="EraserButton" type="Button" parent="Row" unique_id=929964492]
+layout_mode = 2
+text = "Eraser"
+
+[node name="Sep2" type="VSeparator" parent="Row" unique_id=2137536864]
+layout_mode = 2
+
+[node name="SizeLabel" type="Label" parent="Row" unique_id=1177373047]
+layout_mode = 2
+text = "Size: Placeholder"
+
+[node name="SizeSlider" type="HSlider" parent="Row" unique_id=219011693]
+layout_mode = 2
+
+[node name="Sep3" type="VSeparator" parent="Row" unique_id=349892173]
+layout_mode = 2
+
+[node name="Palette" type="HBoxContainer" parent="Row" unique_id=569186076]
+layout_mode = 2
+
+[node name="HeightBox" type="HBoxContainer" parent="Row" unique_id=1913751211]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Row/HeightBox" unique_id=1293753881]
+layout_mode = 2
+text = "Height"
+
+[node name="HeightSpin" type="SpinBox" parent="Row/HeightBox" unique_id=2014531498]
+layout_mode = 2
+
+[node name="Spacer" type="Control" parent="Row" unique_id=388029344]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="UndoButton" type="Button" parent="Row" unique_id=2038598599]
+layout_mode = 2
+text = "Undo"
+
+[node name="RedoButton" type="Button" parent="Row" unique_id=31471144]
+layout_mode = 2
+text = "Redo"
+
+[node name="Sep4" type="VSeparator" parent="Row" unique_id=921044254]
+layout_mode = 2
+
+[node name="StatusLabel" type="Label" parent="Row" unique_id=1576273217]
+layout_mode = 2
+text = "Cell -    Height -"

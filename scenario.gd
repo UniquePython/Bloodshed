@@ -10,7 +10,7 @@ const STAGES := [
 var current_stage := 1
 
 func reset() -> void:
-	map = null
+	map = MapData.new(512, 512) # Temporary placeholder fixed size
 	current_stage = 1
 
 func go_to_stage(index: int) -> void:

@@ -1,6 +1,9 @@
 [gd_scene format=3 uid="uid://h2t2eybqv627"]
 
+[ext_resource type="Script" uid="uid://c163hg0hlfk16" path="res://editor/editor_canvas.gd" id="1_ahrcy"]
+[ext_resource type="Script" uid="uid://cpwrd0b4g78lf" path="res://terrain_editor.gd" id="1_o7rcd"]
 [ext_resource type="PackedScene" uid="uid://dqnxv3qi1mft" path="res://nav_bar.tscn" id="1_ttjd6"]
+[ext_resource type="PackedScene" uid="uid://b0he7r370pnq6" path="res://toolbar.tscn" id="3_2vnjy"]
 
 [node name="TerrainEditor" type="Control" unique_id=796161596]
 layout_mode = 3
@@ -9,6 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_o7rcd")
 
 [node name="Background" type="ColorRect" parent="." unique_id=1323914912]
 layout_mode = 1
@@ -24,3 +28,24 @@ layout_mode = 0
 anchors_preset = 0
 anchor_right = 0.0
 grow_horizontal = 1
+
+[node name="Layout" type="VBoxContainer" parent="." unique_id=1357447286]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="TopSpacer" type="Control" parent="Layout" unique_id=614132304]
+custom_minimum_size = Vector2(0, 43)
+layout_mode = 2
+
+[node name="EditorCanvas" type="Control" parent="Layout" unique_id=1024060797]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("1_ahrcy")
+
+[node name="Toolbar" parent="Layout" unique_id=1388740145 instance=ExtResource("3_2vnjy")]
+layout_mode = 2
