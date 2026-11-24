@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://h2t2eybqv627"]
 
+[ext_resource type="PackedScene" uid="uid://dqnxv3qi1mft" path="res://nav_bar.tscn" id="1_ttjd6"]
+
 [node name="TerrainEditor" type="Control" unique_id=796161596]
 layout_mode = 3
 anchors_preset = 15
@@ -16,3 +18,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.11764706, 0.11764706, 0.13333334, 1)
+
+[node name="NavBar" parent="." unique_id=981818284 instance=ExtResource("1_ttjd6")]
+layout_mode = 0
+anchors_preset = 0
