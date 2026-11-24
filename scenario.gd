@@ -1,6 +1,6 @@
 extends Node
 
-var map = null
+var map: MapData = null
 
 const STAGES := [
 	{"name": "Main Menu", "scene": "res://main_menu.tscn"},
