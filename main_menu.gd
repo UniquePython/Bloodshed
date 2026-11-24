@@ -8,7 +8,8 @@ func _ready() -> void:
 	quit_button.pressed.connect(_on_quit_pressed)
 
 func _on_new_pressed() -> void:
-	print("New!")
+	Scenario.reset()
+	get_tree().change_scene_to_file("res://terrain_editor.tscn")
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
